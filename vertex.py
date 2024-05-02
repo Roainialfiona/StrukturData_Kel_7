@@ -43,6 +43,25 @@ class PetaJawaTimur:
 petaJawaTimur = PetaJawaTimur()
 
 # Daftar nama kota di Jawa Timur
-kota_jawa_timur = ["Surabaya", "Malang", "Sidoarjo", "Probolinggo", "Pasuruan", "Mojokerto",
-                   "Kediri", "Jombang", "Madiun", "Blitar", "Lamongan", "Tulungagung",
+kota_jawa_timur = ["Surabaya", "Malang", "Sidoarjo", "Probolinggo", "Pasuruan", 
+                   "Kediri", "Jombang", "Madiun", "Blitar", "Lamongan",
                    "Batu", "Ponorogo", "Nganjuk", "Trenggalek", "Magetan", "Pacitan"]
+# Ambil sejumlah acak antara 10 hingga 20 kota dari daftar kota
+import random
+
+jumlah_kota = random.randint(10, 20)
+kota_terpilih = random.sample(kota_jawa_timur, jumlah_kota)
+
+# Tambahkan kota-kota terpilih ke peta
+for kota in kota_terpilih:
+    petaJawaTimur.tambahkanKota(kota)
+
+# Hubungkan setiap kota dengan jalan secara acak
+while petaJawaTimur.totalEdge < 30:  # pastikan total edge adalah 30
+    kota1, kota2 = random.sample(kota_terpilih, 2)
+    if not (kota2 in petaJawaTimur.cityList[kota1] or kota1 in petaJawaTimur.cityList[kota2]):
+        petaJawaTimur.tambahkanJalan(kota1, kota2)
+
+# Tampilkan peta Jawa Timur
+petaJawaTimur.printPeta()
+print("Total edge:", petaJawaTimur.totalEdge)
