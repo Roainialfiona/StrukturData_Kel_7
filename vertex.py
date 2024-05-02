@@ -22,3 +22,27 @@ class PetaJawaTimur:
             del self.cityList[kotaDihapus]
             return True
         return False
+    
+    def tambahkanJalan(self, kota1, kota2):
+        if kota1 in self.cityList and kota2 in self.cityList:
+            self.cityList[kota2].append(kota1)
+            self.cityList[kota1].append(kota2)
+            self.totalEdge += 1
+            return True
+        return False
+    
+    def hapusJalan(self, kota1, kota2):
+        if kota1 in self.cityList and kota2 in self.cityList:
+            self.cityList[kota2].remove(kota1)
+            self.cityList[kota1].remove(kota2)
+            self.totalEdge -= 1
+            return True
+        return False
+
+
+petaJawaTimur = PetaJawaTimur()
+
+# Daftar nama kota di Jawa Timur
+kota_jawa_timur = ["Surabaya", "Malang", "Sidoarjo", "Probolinggo", "Pasuruan", "Mojokerto",
+                   "Kediri", "Jombang", "Madiun", "Blitar", "Lamongan", "Tulungagung",
+                   "Batu", "Ponorogo", "Nganjuk", "Trenggalek", "Magetan", "Pacitan"]
